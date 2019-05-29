@@ -1,6 +1,8 @@
+#coding=utf-8
 # #list
 # a = [i for i in range(10)]
-# #generator,生成器占用内存较少
+#生成器介绍：在迭代器的基础之上，不用我们人工记录当前迭代状态，简而言之就是省事
+# #第一种创建generator,生成器占用内存较少
 # b = (i for i in range(10))
 #
 # c = [{'name':'wang','age':22},{'name':'li','age':33}]

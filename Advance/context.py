@@ -30,7 +30,7 @@
 高级版
 上下文管理器:一个对象实现了__enter__(),__exit__()方法就能称为上下文管理器
 特征(Feature):能够使用with关键字
-优点(Advantage):简介，优雅，高端大气上档次。
+优点(Advantage):简洁，优雅，高端大气上档次。
 过程(Process):open方法的返回值赋值给变量f,当离开with代码块的时候，系统会自动调用f.close()方法
 with的作用和使用try/finally语句是一样的。
 '''
