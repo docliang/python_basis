@@ -93,35 +93,75 @@
 #新式类中的属性有三种访问方式，并分别对应了三个被@property,@方法名.setter,@方法名.deleter修饰的方法
 #由于新式类中具有三种访问方式，我们可以根据它们几个属性的访问特点，分别将三个方法定义为对同一个属性:获取，修改，删除
 
+
+# class Goods(object):
+#     def __init__(self):
+#         #原价
+#         self.orginal_price = 100
+#         #折扣
+#         self.discount = 0.8
+#
+#     @property
+#     def price(self):
+#         #实际价格 = 原价 * 折扣
+#         new_price = self.orginal_price * self.discount
+#         return new_price
+#     @price.setter
+#     def price(self,value):
+#         self.orginal_price = value
+#
+#     @price.deleter
+#     def price(self):
+#         del self.orginal_price
+#
+#
+# obj = Goods()
+# print(obj.price)
+# ret = obj.price = 200
+# print(ret)
+# del obj.price
+
+
+#类属性方式，创建值为property对象的类属性
+#当使用类属性的方式创建property属性时，经典类与新式类并无区别
+
+# class Foo:
+#     def get_bar(self):
+#         return 'hello'
+#
+#     BAR = property(get_bar)
+#
+# obj = Foo()
+# res = obj.BAR #自动调用get_bar方法，并获取方法的返回值
+# print(res)
+#
+
+
+#property方法中有四个参数
+#第一个参数是方法名,调用 对象.属性 时自动触发执行方法
+#第二个参数是方法名,调用 对象.属性 = xxx 时自动触发执行方法
+#第三个参数是方法名,调用 del 对象.属性 时自动触发执行方法
+#第四个参数是字符串,调用 对象.属性.__doc__,此参数是该属性的描述信息
+
+
 class Goods(object):
     def __init__(self):
-        #原价
         self.orginal_price = 100
-        #折扣
         self.discount = 0.8
 
-    @property
-    def price(self):
-        #实际价格 = 原价 * 折扣
+    def get_price(self):
         new_price = self.orginal_price * self.discount
         return new_price
-    @price.setter
-    def price(self,value):
-        self.orginal_price = value
 
-    @price.deleter
-    def price(self):
+    def set_price(self,val):
+        self.orginal_price = val
+
+    def del_price(self):
         del self.orginal_price
 
-
-obj = Goods()
-print(obj.price)
-ret = obj.price = 200
-print(ret)
-del obj.price
+    PRICE = property(get_price,set_price,del_price,'价格属性描述')
 
 
-
-
-
-
+###############################################################################################################
+#总结：定义property有两种方式，分别是装饰器和类属性，装饰器对新式类和经典类有不同写法，新式类三种写法/经典类一种写法
+#通过使用property属性，能够简化调用者在获取数据的流程
